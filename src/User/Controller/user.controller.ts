@@ -1,6 +1,6 @@
 import { Request, Response,NextFunction } from "express";
 import { User } from "../../User/Model/user.model";
-import mysqlDataSource from "../../../db/db.connection";
+import mysqlDataSource from "../../../db/mysql.connection";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import { AppError } from "@src/Middlewares/errorHandler.middleware";

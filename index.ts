@@ -2,9 +2,11 @@ import express  from "express";
 require('module-alias/register');
 
 import dotenv from 'dotenv';
-import mysqlConnection from "./db/db.connection";
 import userRouter from './src/User/user.route'
+import mysqlConnection from "./db/mysql.connection";
+import mongoDbConnection from './db/mongodb.connection';
 import { errorHandler, AppError } from "@src/Middlewares/errorHandler.middleware";
+
 const app = express();
 
 dotenv.config()
@@ -17,12 +19,15 @@ app.use(express.static("public"))
 const startApp = async () => {
     try {
 
-        const dbConnection = await mysqlConnection.initialize();;
-        console.log("Database connected:", dbConnection.isInitialized);
+        const mysql = await mysqlConnection.initialize();
+        console.log("MYSQL connected:", mysql.isInitialized);
+
+        await mongoDbConnection();
 
         app.get('/',(req,res)=>{
             res.send("hello");
         })
+
         app.use('/user',userRouter());
 
         app.all("*", (req, res, next) => {
