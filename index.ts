@@ -12,6 +12,8 @@ const app = express();
 dotenv.config()
 
 const port = process.env.PORT || 5006;
+console.log(port);
+
 app.use(express.json())
 // app.use(express.urlencoded({ extended: false }))
 app.use(express.static("public"))

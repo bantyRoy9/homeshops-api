@@ -6,7 +6,7 @@ import mongoose, { ConnectOptions } from "mongoose";
  */
 const connectMongoDB = async (): Promise<void> => {
     try {
-        const mongoUri = 'mongodb://localhost:27018/finance_management';
+        const mongoUri = 'mongodb://localhost:27018/homeshops';
         if (!mongoUri) {
             throw new Error(
                 "MONGO_URI is not defined in the environment variables."
